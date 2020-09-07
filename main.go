@@ -30,7 +30,6 @@ func main() {
 		if f.IsDir() {
 			continue
 		}
-
 		format := filepath.Ext(f.Name())
 
 		file, err := os.Open(f.Name())
@@ -38,6 +37,8 @@ func main() {
 		var img image.Image
 		switch format {
 		case ".jpeg":
+			img, err = jpeg.Decode(file)
+		case ".jpg":
 			img, err = jpeg.Decode(file)
 		case ".png":
 			img, err = png.Decode(file)
